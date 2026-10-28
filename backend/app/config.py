@@ -57,8 +57,9 @@ class Settings(BaseSettings):
         self.assert_external_submission_blocked()
 
     # CORS settings - specify allowed origins comma-separated or as list
-    # Default includes local Vite & Next dev ports, plus supports production FRONTEND_URL
+    # Supports FRONTEND_URL, CORS_ORIGINS, or ALLOWED_ORIGINS
     FRONTEND_URL: str = ""
+    CORS_ORIGINS: str = ""
     ALLOWED_ORIGINS: str = (
         "http://localhost:5173,http://127.0.0.1:5173,http://localhost:3000,http://127.0.0.1:3000"
     )
@@ -70,10 +71,12 @@ class Settings(BaseSettings):
     @property
     def cors_origins(self) -> List[str]:
         origins = [orig.strip() for orig in self.ALLOWED_ORIGINS.split(",") if orig.strip()]
-        if self.FRONTEND_URL and self.FRONTEND_URL.strip():
-            frontend_clean = self.FRONTEND_URL.strip().rstrip("/")
-            if frontend_clean not in origins:
-                origins.append(frontend_clean)
+        for extra in (self.FRONTEND_URL, self.CORS_ORIGINS):
+            if extra and extra.strip():
+                for item in extra.split(","):
+                    clean = item.strip().rstrip("/")
+                    if clean and clean not in origins:
+                        origins.append(clean)
         return origins
 
     _backend_dir: str = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
