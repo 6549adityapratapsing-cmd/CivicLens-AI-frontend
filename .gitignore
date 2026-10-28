@@ -1,0 +1,76 @@
+# Node.js & Frontend dependencies
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# Vite / Build outputs
+.vite/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Python & Backend virtual environments
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Environment variables & secrets (CRITICAL: NEVER COMMIT SECRETS)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials.json
+service_account.json
+
+# IDE / Editor configuration
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Testing & coverage
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Local uploads & temporary files
+uploads/
+tmp/
+temp/
+*.log
+
+# Databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Backups & temporary
+*.bak
+*.tmp
